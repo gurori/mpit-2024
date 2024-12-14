@@ -12,7 +12,8 @@ import Link from "next/link";
 import type { Vacancy } from "@/lib/types";
 
 export default async function HomePage() {
-  const vacancies: Vacancy[] = await apiFetch("/api/vacancies").then(async res => res.json())
+  const res = await apiFetch("/api/vacancies")
+  const vacancies: Vacancy[] = await res.json()
 
   return (
     <>
