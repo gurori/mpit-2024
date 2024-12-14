@@ -21,6 +21,7 @@ import {
 } from "@/components/ui/select";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { setUserData } from "../actions";
 
 export default function RegisterForm() {
   const { push } = useRouter();
@@ -58,22 +59,21 @@ export default function RegisterForm() {
       });
 
       if (res.ok) {
-        push("/profile");
-      }
-      else {
-        const apiError = await res.json()
-        setFormError(apiError.detail)
+        const id = await res.json();
+        await setUserData(id, data.role);
+        push(`/profile/${data.role.toLowerCase()}`);
+      } else {
+        const apiError = await res.json();
+        setFormError(apiError.detail);
       }
     } catch (err) {
-        setFormError("Ошибка. Пожалуйста повторите пойзже.")
+      setFormError("Ошибка. Пожалуйста повторите пойзже.");
     }
   };
 
   return (
     <form className="grid gap-2 " onSubmit={handleSubmit(onSubmit)}>
-        <div>
-            {formError && <p>{formError}</p>}
-        </div>
+      <div>{formError && <p>{formError}</p>}</div>
       <Input {...register("firstName")} placeholder="Имя" />
       <div>{errors.firstName && <p>{errors.firstName.message}</p>}</div>
       <Input {...register("email")} placeholder="Почта" type="email" />

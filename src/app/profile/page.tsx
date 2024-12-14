@@ -6,5 +6,5 @@ export default async function ProfilePage() {
 
   if (!role) redirect("/register");
 
-  redirect(`/profile/${role.value}`);
+  redirect(`/profile/${role.value.toLowerCase()}`);
 }

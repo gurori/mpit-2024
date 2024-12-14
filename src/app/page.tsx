@@ -1,4 +1,4 @@
-import { cn } from "@/lib/utils";
+import { apiFetch, cn } from "@/lib/utils";
 import s from "./Main.module.css";
 import { Input } from "@/components/input/Input";
 import {
@@ -11,36 +11,7 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
 export default async function HomePage() {
-  const vacancies = [
-    {
-      color: "#FFAFA8",
-      count: 37,
-      title: "Курьер",
-      slalary: "30 000 – 215 000 ₽",
-    },
-    {
-      color: "#FFEB9D",
-      count: 90,
-      title: "Администратор",
-      slalary: "20 000 – 165 000 ₽",
-    },
-    { color: "#6AAA85", count: 90, title: "Кассир", slalary: "до 100 000 ₽" },
-    { color: "#6DFAA8", count: 90, title: "Оператор", slalary: "до 150 000 ₽" },
-    {
-      color: "#6DFAA8",
-      count: 37,
-      title: "Курьер",
-      slalary: "30 000 – 215 000 ₽",
-    },
-    {
-      color: "#D3D3D3",
-      count: 90,
-      title: "Администратор",
-      slalary: "20 000 – 165 000 ₽",
-    },
-    { color: "#FFAFA8", count: 90, title: "Кассир", slalary: "до 100 000 ₽" },
-    { color: "#FFEB9D", count: 90, title: "Оператор", slalary: "до 150 000 ₽" },
-  ];
+  const vacancies: any[] = await apiFetch("/api/vacancies").then(async res => res.json())
 
   return (
     <>
@@ -64,19 +35,24 @@ export default async function HomePage() {
         </div>
         <h2 className="py-16 flex self-start">Вакансии</h2>
         <div className="center flex-wrap gap-6">
-          {vacancies.map((v, i) => (
-            <span key={i} className={cn(s.vacancy, "relative")}>
-              <span className="absolute"></span>
-              <p className="text-lg">
-                <b>{v.title}</b>
-              </p>
-              <p>{v.slalary}</p>
-              <div className="flex gap-1 place-items-center text-[#007043] pt-4">
-                <span className="bg-[#F5F5F5] p-0.5 rounded-sm">{v.count}</span>
-                <p>похожих вакансий</p>
-              </div>
-            </span>
-          ))}
+          {vacancies.map((v, i) => {
+            const count = Math.floor(Math.random() * 10) + 1
+            return (
+              <span key={i} className={cn(s.vacancy, "relative")}>
+                <Link href={`/vacancy/${v.id}`}>
+                <span className="absolute"></span>
+                <p className="text-lg">
+                  <b>{v.title}</b>
+                </p>
+                <p>от {v.salary} ₽</p>
+                <div className="flex gap-1 place-items-center text-[#007043] pt-4">
+                  <span className="bg-[#F5F5F5] p-0.5 rounded-sm">{count}</span>
+                  <p>похожих вакансий</p>
+                </div>
+                </Link>
+              </span>
+            )
+          })}
         </div>
 
         <h2 className="py-16 flex self-start">Всё ради удобства</h2>
@@ -106,8 +82,8 @@ export default async function HomePage() {
         <Button variant="black">Присоединиться</Button>
         </Link>
 
-        <h2 className="text-2xl pt-16 pb-8 flex self-start [&>*]:text-[#9D9D9D] [&>*]:text-lg">
-          Поиск работы и вакансий в Республике Сахе (Якутии)
+        <h2 className="text-2xl pt-24 pb-8 flex self-start [&>*]:text-[#9D9D9D] [&>*]:text-lg">
+          Поиск работы и вакансий в Республике Саха (Якутии)
         </h2>
         <p className="text-lg text-[#9D9D9D]">
           Вакансии в Республике Сахе (Якутии) всегда можно найти на сайте

@@ -49,18 +49,18 @@ export default function RootLayout({
         {children}
         <footer className="bg-[#F5F5F5]">
           <div className="container">
-            <div className="flex flex-wrap place-content-between px-12">
-              <span>
-                <p><b>Информация</b></p>
+            <div className="flex flex-wrap place-content-between p-12">
+              <span className="grid gap-2">
+                <p className="pb-2"><b>Информация</b></p>
                 <p>Правила сайта</p>
                 <p>Политика обработки перс. данных</p>
                 <p>Контакты</p>
-                <p></p>
-                <p></p>
-                <p></p>
+                <p>Пресс-служба</p>
+                <p>Работа у нас</p>
+                <p>Как не стать жертвой мошенников</p>
               </span>
-              <span>
-                <p><b>Соискателям</b></p>
+              <span className="grid gap-2">
+                <p className="pb-2"><b>Соискателям</b></p>
                 <p>Готовое резюме</p>
                 <p>Все сервисы</p>
                 <p>Профориентация</p>
@@ -68,8 +68,8 @@ export default function RootLayout({
                 <p>Хочу у вас работать</p>
                 <p>Производственный календарь</p>
               </span>
-              <span>
-                <p><b>Работодателям</b></p>
+              <span className="grid">
+                <p className="pb-2"><b>Работодателям</b></p>
                 <p>Разместить вакансии</p>
                 <p>Производственный календарь</p>
                 <p>Прайс-лист</p>
