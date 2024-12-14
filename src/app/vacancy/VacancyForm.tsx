@@ -52,7 +52,7 @@ export default function VacancyForm({ id }: { id: string }) {
         const apiError = await res.json();
         setFormError(apiError.detail);
       }
-    } catch (err) {
+    } catch {
       setFormError("Ошибка. Пожалуйста повторите пойзже.");
     }
   };

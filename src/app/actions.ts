@@ -1,6 +1,5 @@
 "use server";
 
-import { ResponseCookie } from "next/dist/compiled/@edge-runtime/cookies";
 import { cookies } from "next/headers";
 
 export async function setUserData(id: string, role: string) {

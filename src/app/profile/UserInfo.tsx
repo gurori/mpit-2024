@@ -1,10 +1,11 @@
+import type { User } from "@/lib/types";
 import { ReactNode } from "react";
 
 export default function UserInfo({
   children,
   user,
 }: {
-  user: any;
+  user: User;
   children?: ReactNode;
 }) {
   return (

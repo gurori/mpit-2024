@@ -9,9 +9,10 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import type { Vacancy } from "@/lib/types";
 
 export default async function HomePage() {
-  const vacancies: any[] = await apiFetch("/api/vacancies").then(async res => res.json())
+  const vacancies: Vacancy[] = await apiFetch("/api/vacancies").then(async res => res.json())
 
   return (
     <>

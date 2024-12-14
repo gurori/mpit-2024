@@ -66,7 +66,7 @@ export default function RegisterForm() {
         const apiError = await res.json();
         setFormError(apiError.detail);
       }
-    } catch (err) {
+    } catch {
       setFormError("Ошибка. Пожалуйста повторите пойзже.");
     }
   };

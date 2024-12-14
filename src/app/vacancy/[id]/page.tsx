@@ -1,5 +1,4 @@
 import { apiFetch } from "@/lib/utils";
-import Link from "next/link";
 
 export default async function Vacancy({ params }: { params: { id: string } }) {    
   const vacancy = await apiFetch(`/api/vacancies/${await params.id}`).then(
