@@ -1,9 +1,8 @@
 import { apiFetch } from "@/lib/utils";
 
 export default async function Vacancy({ params }: { params: { id: string } }) {    
-  const vacancy = await apiFetch(`/api/vacancies/${await params.id}`).then(
-    async (res) => await res.json()
-  );
+    const response = await apiFetch(`/api/vacancies/${params.id}`);
+    const vacancy = await response.json();
   return (
     <main className="container py-14">
       <h2 className="flex pb-8">
