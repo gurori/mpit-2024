@@ -1,8 +1,9 @@
 import type { Vacancy } from "@/lib/types";
 import { apiFetch } from "@/lib/utils";
 
-export default async function Vacancy({ params }: { params: { id: string } }) {
-  const response = await apiFetch(`/api/vacancies/${params.id}`);
+export default async function Vacancy({ params }: { params: Promise<{ id: string }> }) {
+  const {id} = await params
+  const response = await apiFetch(`/api/vacancies/${id}`);
   const vacancy: Vacancy = await response.json();
   return (
     <main className="container py-14">
