@@ -1,8 +1,9 @@
+import type { Vacancy } from "@/lib/types";
 import { apiFetch } from "@/lib/utils";
 
-export default async function Vacancy({ params }: { params: { id: string } }) {    
-    const response = await apiFetch(`/api/vacancies/${params.id}`);
-    const vacancy = await response.json();
+export default async function Vacancy({ params }: { params: { id: string } }) {
+  const response = await apiFetch(`/api/vacancies/${params.id}`);
+  const vacancy: Vacancy = await response.json();
   return (
     <main className="container py-14">
       <h2 className="flex pb-8">
@@ -28,12 +29,6 @@ export default async function Vacancy({ params }: { params: { id: string } }) {
             </td>
             <td>от {vacancy.salary} ₽</td>
           </tr>
-          {/* <tr className="[&>*]:py-2">
-            <td className="w-1/3">
-              <b>Работодатель</b>
-            </td>
-            <td><Link href={`/profile/employer/${}`}>Ссылка</Link></td>
-          </tr> */}
         </tbody>
       </table>
     </main>
