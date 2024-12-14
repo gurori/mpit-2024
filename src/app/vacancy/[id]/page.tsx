@@ -28,12 +28,6 @@ export default async function Vacancy({ params }: { params: { id: string } }) {
             </td>
             <td>от {vacancy.salary} ₽</td>
           </tr>
-          {/* <tr className="[&>*]:py-2">
-            <td className="w-1/3">
-              <b>Работодатель</b>
-            </td>
-            <td><Link href={`/profile/employer/${}`}>Ссылка</Link></td>
-          </tr> */}
         </tbody>
       </table>
     </main>
